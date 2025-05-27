@@ -42,3 +42,10 @@ Service information:
 ~/ros2_ws# ros2 run rqt_gui rqt_gui --perspective-file src/axt_pkg/config/rosbag.perspective 
 ~/ros2_ws# ros2 run rviz2 rviz2 -d src/axt_pkg/config/rosbag.rviz 
 ```
+
+## Compilación y ejecución automática
+```bash
+~/ros2_ws# colcon build --packages-select axt_pkg
+~/ros2_ws# source install/setup.bash
+~/ros2_ws# ros2 launch axt_pkg playback_rviz_rqt.launch.py
+```
