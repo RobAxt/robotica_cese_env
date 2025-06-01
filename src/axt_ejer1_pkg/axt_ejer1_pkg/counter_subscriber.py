@@ -31,16 +31,14 @@ class CounterSubscriber(Node):
         if  msg.data >= self.reset_counter:
             self.get_logger().info(f'Counter reached ({self.reset_counter}), calling service /reset_counter')
             self.future =self.reset_client.call_async(self.request)
+            rclpy.spin_until_future_complete(self, self.future, timeout_sec=0.5)
             if self.future.done():
                 try:
                     response = self.future.result()
                 except Exception as e:
                     self.get_logger().error(f'Fallo al llamar al servicio: {e}')
                 else:
-                    self.get_logger().info(
-                        f'Respuesta recibida (blocking): success={response.success}, '
-                        f'message="{response.message}"'
-                    )
+                    self.get_logger().info(f'Respuesta recibida (blocking): success={response.success} message={response.message}')
 
 
 def main(args=None):
