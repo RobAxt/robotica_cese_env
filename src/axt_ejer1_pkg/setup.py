@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'counter_publisher = axt_ejer1_pkg.counter_publisher:main'
+            'counter_publisher = axt_ejer1_pkg.counter_publisher:main',
+            'counter_subscriber = axt_ejer1_pkg.counter_subscriber:main'
         ],
     },
 )
