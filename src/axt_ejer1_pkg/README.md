@@ -76,6 +76,8 @@ Subscription count: 0
 ## Invocar al servicio del counter_publisher desde linea de comando
 ```bash
 ~/ros2_ws# ros2 service call /reset_counter std_srvs/srv/Trigger "{}"
+requeste: making request: std_srvs.srv.Trigger_Request()
+response: std_srvs.srv.Trigger_Response(success=True, message='Counter has been reset')
 ```
 
 # Nodo Suscriptor y Client Service
@@ -123,4 +125,13 @@ Type: std_msgs/msg/Int32
 Publisher count: 1
 Subscription count: 1
 
+```
+
+# Ejecucion automatica
+``bash
+# Default configuration (resets at count 50)
+~/ros2_ws# ros2 launch axt_eje1_pkg counter_demo.launch.py
+
+# Custom configuration (counts to 51, publishes every 2.0 seconds)
+~/ros2_ws# ros2 launch axt_ejer1_pkg counter_demo.launch.py  counter_max:=5 timer_period:=2.0 reset_counter:=3
 ```
