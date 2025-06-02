@@ -1,0 +1,8 @@
+# ----------- Goal -----------
+string text
+---
+# ----------- Result -----------
+int32 total_words
+---
+# ----------- Feedback -----------
+string current_word
