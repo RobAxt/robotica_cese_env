@@ -3,6 +3,7 @@ from rclpy.node import Node
 from std_msgs.msg import Int32
 from std_srvs.srv import Trigger
 from rclpy.executors import ExternalShutdownException
+from functools import partial  #  https://youtu.be/vCTbUgw6k8U?si=hGqjJO6da2HTqQHj&t=620
 
 class CounterSubscriber(Node):
     def __init__(self):
@@ -16,6 +17,14 @@ class CounterSubscriber(Node):
 
         # Se crea el servicio cliente para acceder
         self.reset_client = self.create_client(Trigger, '/reset_counter')
+
+        # Se espera a que el servicio este creado por un servidor
+        if not self.reset_client.wait_for_service(timeout_sec=5.0):
+            self.get_logger().error(
+                'El servicio /reset_counter NO respondió después de 5 segundos. '
+                'Verifica que el servidor esté levantado y que el nombre sea correcto.'
+            )
+
         # Se crea el request para Trigger es un request vacío
         self.request = Trigger.Request()
 
@@ -29,16 +38,22 @@ class CounterSubscriber(Node):
     def subscription_listener_callback(self, msg):
         self.get_logger().info(f'Received: {msg.data}')
         if  msg.data >= self.reset_counter:
+            # Se envia request
             self.get_logger().info(f'Counter reached ({self.reset_counter}), calling service /reset_counter')
-            self.future =self.reset_client.call_async(self.request)
-            rclpy.spin_until_future_complete(self, self.future, timeout_sec=0.5)
-            if self.future.done():
-                try:
-                    response = self.future.result()
-                except Exception as e:
-                    self.get_logger().error(f'Fallo al llamar al servicio: {e}')
-                else:
-                    self.get_logger().info(f'Respuesta recibida (blocking): success={response.success} message={response.message}')
+            self.future = self.reset_client.call_async(self.request)
+            self.future.add_done_callback(partial(self.callback_until_response))
+    
+    def callback_until_response(self, future):
+        # Se espera response
+        rclpy.spin_until_future_complete(self, self.future)
+        if self.future.done() and not self.future.cancelled():
+            response = self.future.result()  # Trigger.Response
+            if response is not None:
+                self.get_logger().info(f'Respuesta recibida: success={response.success} message="{response.message}"')
+            else:
+                self.get_logger().error('Se obtuvo respuesta nula del servicio.')
+        else:
+            self.get_logger().error('La llamada al servicio falló o fue cancelada.')
 
 
 def main(args=None):
