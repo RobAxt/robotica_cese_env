@@ -3,7 +3,6 @@ from rclpy.node import Node
 from std_msgs.msg import Int32
 from std_srvs.srv import Trigger
 from rclpy.executors import ExternalShutdownException
-from functools import partial  #  https://youtu.be/vCTbUgw6k8U?si=hGqjJO6da2HTqQHj&t=620
 
 class CounterSubscriber(Node):
     def __init__(self):
@@ -41,9 +40,9 @@ class CounterSubscriber(Node):
             # Se envia request
             self.get_logger().info(f'Counter reached ({self.reset_counter}), calling service /reset_counter')
             self.future = self.reset_client.call_async(self.request)
-            self.future.add_done_callback(partial(self.callback_until_response))
+            self.future.add_done_callback(self.service_response_callback) #  https://youtu.be/vCTbUgw6k8U?si=hGqjJO6da2HTqQHj&t=620
     
-    def callback_until_response(self, future):
+    def service_response_callback(self, future):
         # Se espera response
         rclpy.spin_until_future_complete(self, self.future)
         if self.future.done() and not self.future.cancelled():

@@ -3,7 +3,7 @@ from rclpy.node import Node
 from rclpy.executors import ExternalShutdownException
 
 from std_msgs.msg import Int32
-from std_srvs.srv import Trigger
+from std_srvs.srv import Trigger  # https://docs.ros.org/en/noetic/api/std_srvs/html/srv/Trigger.html
 
 class CounterPublisher(Node):
 
@@ -36,7 +36,6 @@ class CounterPublisher(Node):
         response.success = True
         response.message = 'Counter has been reset'
         return response
-
 
     def timer_callback(self):
         msg = Int32()
