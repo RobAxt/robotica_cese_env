@@ -20,3 +20,13 @@ Crear un roslaunch que permita pasar el texto como argumento y ejecute ambos nod
 ~/ros2_ws# source install/setup.bash
 ~/ros2_ws# 
 ```
+
+## Verificar si aparece la interface custom action
+```bash
+~/ros2_ws# ros2 interface show axt_ejer2_pkg/action/SplitWords
+```
+
+## Ejecucion manual del server action
+```bash
+~/ros2_ws# ros2 run axt_ejer2_pkg splitWords_actionServer
+```
