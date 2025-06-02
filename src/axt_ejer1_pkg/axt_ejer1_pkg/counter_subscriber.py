@@ -32,19 +32,15 @@ class CounterSubscriber(Node):
             'counter_topic',
             self.subscription_listener_callback,
             10)
-        self.subscription  # prevent unused variable warning
 
     def subscription_listener_callback(self, msg):
         self.get_logger().info(f'Received: {msg.data}')
         if  msg.data >= self.reset_counter:
-            # Se envia request
             self.get_logger().info(f'Counter reached ({self.reset_counter}), calling service /reset_counter')
             self.future = self.reset_client.call_async(self.request)
             self.future.add_done_callback(self.service_response_callback) #  https://youtu.be/vCTbUgw6k8U?si=hGqjJO6da2HTqQHj&t=620
     
     def service_response_callback(self, future):
-        # Se espera response
-        rclpy.spin_until_future_complete(self, self.future)
         if self.future.done() and not self.future.cancelled():
             response = self.future.result()  # Trigger.Response
             if response is not None:

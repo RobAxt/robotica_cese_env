@@ -34,6 +34,14 @@ Proveer un paquete de ROS con un launchfile con dos nodos:
 ~/ros2_ws# ros2 run axt_ejer1_pkg counter_publisher --ros-args -p counter_max:=51 -p timer_period:=2.0
 ```
 
+## Interface del servicio
+```bash
+~/ros2_ws# ros2 interface show std_srvs/srv/Trigger 
+---
+bool success   # indicate successful run of triggered service
+string message # informational, e.g. for error messages
+```
+
 ## Informacion del publicador (mientras esta corriendo)
 ```bash
 ~/ros2_ws# ros2 node list
