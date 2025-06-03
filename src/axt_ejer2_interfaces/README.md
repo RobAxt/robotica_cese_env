@@ -25,27 +25,3 @@ Crear un roslaunch que permita pasar el texto como argumento y ejecute ambos nod
 ```bash
 ~/ros2_ws# ros2 interface show axt_ejer2_pkg/action/SplitWords
 ```
-
-
-
-
-
-
-
-## Creacion de paquete
-```bash
-~/ros2_ws/src# ros2 pkg create axt_ejer2_pkg --build-type ament_python --dependencies rclpy axt_ejer2_interfaces 
-```
-
-## Compilacion de paquete
-```bash
-~/ros2_ws# colcon build --packages-select axt_ejer2_pkg
-~/ros2_ws# source install/setup.bash
-~/ros2_ws# 
-```
-
-
-## Ejecucion manual del server action
-```bash
-~/ros2_ws# ros2 run axt_ejer2_pkg splitWords_actionServer
-```
