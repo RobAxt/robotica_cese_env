@@ -11,7 +11,7 @@ Crear un roslaunch que permita pasar el texto como argumento y ejecute ambos nod
 
 ## Creacion de paquete
 ```bash
-~/ros2_ws/src# ros2 pkg create --build-type ament_python axt_ejer2_pkg
+~/ros2_ws/src# ros2 pkg create axt_ejer2_pkg --build-type ament_python --dependencies rclpy axt_ejer2_interfaces 
 ```
 
 ## Compilacion de paquete
@@ -21,12 +21,43 @@ Crear un roslaunch que permita pasar el texto como argumento y ejecute ambos nod
 ~/ros2_ws# 
 ```
 
-## Verificar si aparece la interface custom action
-```bash
-~/ros2_ws# ros2 interface show axt_ejer2_pkg/action/SplitWords
-```
-
 ## Ejecucion manual del server action
 ```bash
 ~/ros2_ws# ros2 run axt_ejer2_pkg splitWords_actionServer
+```
+
+## Verificacion de action server disponibles
+```bash
+~/ros2_ws# ros2 action list
+/splitwords
+```
+
+## Pruebas manuales del servidor
+```bash
+~/ros2_ws# ros2 action send_goal /splitwords axt_ejer2_interfaces/action/SplitWords "{text: \"Hola mundo desde ROS 2\"}" --feedback
+Waiting for an action server to become available...
+Sending goal:
+     text: Hola mundo desde ROS 2
+
+Goal accepted with ID: 2a7c1ea1cd034290acfda1318b79540c
+
+Feedback:
+    current_word: Hola
+
+Feedback:
+    current_word: mundo
+
+Feedback:
+    current_word: desde
+
+Feedback:
+    current_word: ROS
+
+Feedback:
+    current_word: '2'
+
+Result:
+    total_words: 5
+
+Goal finished with status: SUCCEEDED
 ```
