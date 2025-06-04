@@ -10,13 +10,14 @@ import time
 class SplitWordsActionServer(Node):
     def __init__(self):
         super().__init__('split_words_action_server')
-        self.splitword_server = ActionServer(
+        
+        self.action_server = ActionServer(
             self, 
             SplitWords, 
             "splitwords", 
             execute_callback = self.execute_callback, # Procesa el Goal y se fija si fue cancelado
-            goal_callback    = self.goal_callback,  # Acepta o rechaza el Goal
-            cancel_callback  = self.cancel_callback # Recibe la cancelacion y la acepta
+            goal_callback    = self.goal_callback,    # Acepta o rechaza el Goal
+            cancel_callback  = self.cancel_callback   # Recibe la cancelacion y la acepta
             )
         self.get_logger().info("[Inicio] SplitWords Action Server inicializado y a la espera de goals...")
 
@@ -78,9 +79,8 @@ def main(args=None):
         pass
     finally:
         # Destruir el servidor y el nodo antes de apagar
-        server_node._action_server.destroy()
         server_node.destroy_node()
-        rclpy.shutdown()
+        rclpy.try_shutdown()
 
 if __name__ == '__main__':
     main()

@@ -9,6 +9,7 @@ Cree el mensaje custom para hacerlo.
 
 Crear un roslaunch que permita pasar el texto como argumento y ejecute ambos nodos.
 
+# Nodo Servidor
 ## Creacion de paquete
 ```bash
 ~/ros2_ws/src# ros2 pkg create axt_ejer2_pkg --build-type ament_python --dependencies rclpy axt_ejer2_interfaces 
@@ -60,4 +61,15 @@ Result:
     total_words: 5
 
 Goal finished with status: SUCCEEDED
+```
+
+# Nodo Cliente
+## Ejecucion manual del cliente
+```bash
+~/ros2_ws# ros2 run axt_ejer2_pkg splitWords_actionClient --ros-args -p text:="Hola mundo desde ROS 2"
+```
+
+## Ejecucion automática
+```bash
+~/ros2_ws# ros2 launch axt_ejer2_pkg splitWordsAction_demo.launch.py text:="Hola mundo desde ROS 2"
 ```
