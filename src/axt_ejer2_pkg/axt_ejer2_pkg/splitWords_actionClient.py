@@ -8,7 +8,7 @@ class SplitWordsActionClient(Node):
     def __init__(self):
         super().__init__('split_words_action_client')
         
-        self.declare_parameter('text')
+        self.declare_parameter('text', 'Sphinx of black quartz, judge my vow.')
         self.param_text = self.get_parameter('text').get_parameter_value().string_value
 
         self.action_client = ActionClient(self, SplitWords, 'splitwords')
@@ -54,11 +54,11 @@ class SplitWordsActionClient(Node):
         result = future.result().result
         status = future.result().status
 
-        if status == 4:  # CANCELLED
+        if status == 5:  # CANCELLED
             self.get_logger().info(
                 f'[Cliente] Goal cancelado. Palabras procesadas hasta el momento: {result.total_words}'
             )
-        elif status == 3:  # SUCCEEDED
+        elif status == 4:  # SUCCEEDED
             self.get_logger().info(
                 f'[Cliente] Acción completada con éxito. Total de palabras: {result.total_words}'
             )
