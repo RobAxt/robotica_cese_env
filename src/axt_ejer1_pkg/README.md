@@ -136,7 +136,7 @@ Subscription count: 1
 ```
 
 # Ejecucion automatica
-``bash
+```bash
 # Default configuration (resets at count 50)
 ~/ros2_ws# ros2 launch axt_eje1_pkg counter_demo.launch.py
 
