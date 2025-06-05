@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
+from rclpy.executors import ExternalShutdownException
 from axt_ejer2_interfaces.action import SplitWords
 
 
@@ -77,7 +78,7 @@ def main(args=None):
     client_node.sendGoal()
     try:
         rclpy.spin(client_node)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, ExternalShutdownException):
         pass
     finally:
         # Destruir el cliente y el nodo antes de apagar

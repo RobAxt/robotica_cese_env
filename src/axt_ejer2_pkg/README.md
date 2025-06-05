@@ -1,4 +1,4 @@
-# Ejericio 2
+# Ejercicio 2
 
 ## Consigna
 Crear un nodo que recibe un texto como action server y envía cada palabra del texto como feedback a 1Hz.

@@ -1,8 +1,10 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Int32
-from std_srvs.srv import Trigger
 from rclpy.executors import ExternalShutdownException
+
+from std_msgs.msg import Int32    # https://docs.ros.org/en/noetic/api/std_msgs/html/msg/Int32.html
+from std_srvs.srv import Trigger  # https://docs.ros.org/en/noetic/api/std_srvs/html/srv/Trigger.html
+
 
 class CounterSubscriber(Node):
     def __init__(self):

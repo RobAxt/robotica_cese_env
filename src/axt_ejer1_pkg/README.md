@@ -1,4 +1,4 @@
-# Ejericio 1
+# Ejercicio 1
 
 ## Consigna
 Proveer un paquete de ROS con un launchfile con dos nodos:

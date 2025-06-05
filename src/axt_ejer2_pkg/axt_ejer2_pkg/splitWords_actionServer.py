@@ -3,6 +3,7 @@ from rclpy.node import Node
 from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 from rclpy.action import CancelResponse, GoalResponse
+from rclpy.executors import ExternalShutdownException
 from axt_ejer2_interfaces.action import SplitWords
 
 import time
@@ -75,7 +76,7 @@ def main(args=None):
     server_node = SplitWordsActionServer()
     try:
         rclpy.spin(server_node)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, ExternalShutdownException):
         pass
     finally:
         # Destruir el servidor y el nodo antes de apagar
