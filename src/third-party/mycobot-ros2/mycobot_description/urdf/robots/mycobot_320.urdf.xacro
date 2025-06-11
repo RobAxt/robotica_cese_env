@@ -60,5 +60,52 @@
       use_gazebo="$(arg use_gazebo)"/>
 
     <xacro:include filename="$(find mycobot_description)/urdf/sensors/intel_rgbd_cam_d435.urdf.xacro"/>
+    <!-- === Cinco links fijos de demostración === -->
 
+    <!-- Link 1, anclado al flange -->
+    <link name="fixed_link_1"/>
+    <joint name="fixed_joint_1" type="fixed">
+      <parent link="world"/>
+      <child  link="fixed_link_1"/>
+      <!-- sube 0.15 m y gira 15° en yaw -->
+      <origin xyz="0.5 0.5 0.15" rpy="0 0 0.2618"/>
+    </joint>
+
+    <!-- Link 2 -->
+    <link name="fixed_link_2"/>
+    <joint name="fixed_joint_2" type="fixed">
+      <parent link="fixed_link_1"/>
+      <child  link="fixed_link_2"/>
+      <!-- sube otros 0.15 m y gira 30° en yaw -->
+      <origin xyz="0.5 0.5 0.15" rpy="0 0 0.5236"/>
+    </joint>
+
+    <!-- Link 3 -->
+    <link name="fixed_link_3"/>
+    <joint name="fixed_joint_3" type="fixed">
+      <parent link="fixed_link_2"/>
+      <child  link="fixed_link_3"/>
+      <!-- sube 0.15 m y gira 45° en yaw -->
+      <origin xyz="0.5 0.5 0.15" rpy="0 0 0.7854"/>
+    </joint>
+
+    <!-- Link 4 -->
+    <link name="fixed_link_4"/>
+    <joint name="fixed_joint_4" type="fixed">
+      <parent link="fixed_link_3"/>
+      <child  link="fixed_link_4"/>
+      <!-- sube 0.15 m y gira 60° en yaw -->
+      <origin xyz="0.5 0.5 0.15" rpy="0 0 1.0472"/>
+    </joint>
+
+    <!-- Link 5 -->
+    <link name="fixed_link_5"/>
+    <joint name="fixed_joint_5" type="fixed">
+      <parent link="fixed_link_4"/>
+      <child  link="fixed_link_5"/>
+      <!-- sube 0.15 m y gira –30° en yaw -->
+      <origin xyz="0.5 0.5 0.15" rpy="0 0 -0.5236"/>
+    </joint>
+
+    <!-- === Fin cinco links fijos === -->
 </robot>
