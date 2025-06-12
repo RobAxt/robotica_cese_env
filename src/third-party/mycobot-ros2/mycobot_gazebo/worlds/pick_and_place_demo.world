@@ -49,12 +49,12 @@
     <include>
       <uri>model://red_cylinder</uri>
       <name>red_cylinder</name>
-      <pose>0.22 0.12 0.175 0 0 0</pose>
+      <pose>0.22 0.12 10.175 0 0 0</pose>
     </include>
-    
+
     <!-- Include the other objects -->
 
-    <include>
+    <!-- <include>
       <uri>model://mustard</uri>
       <pose>0.7 0.15 0.08 0 0 0</pose>
     </include>
@@ -63,22 +63,31 @@
       <uri>model://cheezit_big_original</uri>
       <pose>0.64 0.23 0.17 1.571 0 0</pose>
     </include>
-<!--
-    <include>
-      <uri>model://Table</uri>
-      <pose>0.5 -0.5 0.0 0 0 0</pose>
-    </include>
 
-    <include>
-      <uri>model://soft_cube</uri>
-      <pose>0.5 -0.5 0.0 0 0 0</pose>
-    </include>
--->
     <include>
       <uri>model://coke_can</uri>
       <pose>0.5 0.15 0.15 0 0 2.3</pose>
+    </include> -->
+
+    <include>
+      <uri>
+      https://fuel.gazebosim.org/1.0/OpenRobotics/models/Table
+      </uri>
+      <pose>0.0 0.0 0.0 0 0 1.571</pose>
+      <scale>0.5 0.5 0.5</scale>
     </include>
 
+    <include>
+      <uri>
+      https://fuel.gazebosim.org/1.0/OpenRobotics/models/Wood cube 10cm
+      </uri>
+      <pose>0.22 0.24 10.0 0 0 0</pose>
+    </include>
+
+    <!-- <include>  
+      <uri>model://Table</uri>
+      <pose>0.5 -0.5 0.0 0 0 0</pose>
+    </include> -->
 
     <!-- Define scene properties -->
     <scene>
