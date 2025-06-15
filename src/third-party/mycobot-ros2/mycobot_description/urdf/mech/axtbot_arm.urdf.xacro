@@ -158,7 +158,7 @@
       <xacro:insert_block name="origin"/>
     </joint>
 
-    <joint name="${prefix}link1_to_${prefix}link2" type="revolute">
+    <joint name="${prefix}link1_to_${prefix}link2" type="fixed">
       <axis xyz="0 0 1"/>
       <limit effort="${joint_effort}" lower="-2.9321" upper="2.9321" velocity="${joint_velocity}"/>
       <parent link="${prefix}link1"/>
@@ -167,7 +167,7 @@
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
     </joint>
 
-    <joint name="${prefix}link2_to_${prefix}link3" type="revolute">
+    <joint name="${prefix}link2_to_${prefix}link3" type="fixed">
       <axis xyz="0 0 1"/>
       <limit effort="${joint_effort}" lower="-2.3561" upper="2.3561" velocity="${joint_velocity}"/>
       <parent link="${prefix}link2"/>
@@ -176,7 +176,7 @@
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
     </joint>
 
-    <joint name="${prefix}link3_to_${prefix}link4" type="revolute">
+    <joint name="${prefix}link3_to_${prefix}link4" type="fixed">
       <axis xyz="0 0 1"/>
       <limit effort="${joint_effort}" lower="-2.5307" upper="2.5307" velocity="${joint_velocity}"/>
       <parent link="${prefix}link3"/>
@@ -185,7 +185,7 @@
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
     </joint>
 
-    <joint name="${prefix}link4_to_${prefix}link5" type="revolute">
+    <joint name="${prefix}link4_to_${prefix}link5" type="fixed">
       <axis xyz="0 0 1"/>
       <limit effort="${joint_effort}" lower="-2.5830" upper="2.5830" velocity="${joint_velocity}"/>
       <parent link="${prefix}link4"/>
