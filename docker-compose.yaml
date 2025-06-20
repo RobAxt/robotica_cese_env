@@ -32,6 +32,8 @@ services:
     image: humble-ros-desktop:base
     environment:
         - ROBOT_MODEL=mycobot_320
+    volumes:
+      - ./src:/root/ros2_ws/src
     command: /root/ros2_ws/src/third-party/mycobot-ros2/mycobot_bringup/scripts/mycobot_gazebo_and_moveit.sh
 
   robot-description:
